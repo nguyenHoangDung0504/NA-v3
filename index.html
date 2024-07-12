@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="dist/styles.css">
+
+    <!-- fetch preload -->
+    <script type="module">
+        const csvPaths = ['assets/data/data-s1.csv', 'assets/data/data-s2.csv'];
+
+        csvPaths.forEach(csvPath => {
+            const absolutePath = new URL(csvPath, window.location.origin).href;
+
+            if(!localStorage.getItem(`database-path:${absolutePath}`)) {
+                document.head.appendChild(
+                    Object.assign(document.createElement('link'), {
+                        rel: 'preload',
+                        href: absolutePath,
+                        as: 'fetch',
+                        crossOrigin: 'anonymous'
+                    })
+                );
+            }
+        });
+    </script>
+
+    <!-- main script -->
+    <!-- <script type="module" src="src/app/index.js" async></script> -->
+    <script type="module" src="dist/app.js" async></script>
+</head>
+
+<body>
+    <div id="track-grid">
+        <div class="template item">
+            <p class="code"></p>
+            <p class="rj-code"></p>
+            <p class="eng-name"></p>
+            <br>
+        </div>
+    </div>
+</body>
+
+</html>
