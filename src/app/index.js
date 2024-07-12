@@ -1,6 +1,6 @@
 'use strict';
 
-import '../styles/main.css';
+import '../view/styles/main.css';
 import Utils from './Utils.class.js';
 import config from './config.js';
 import Database from '../model/Database.class.js';
