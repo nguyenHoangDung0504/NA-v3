@@ -64,13 +64,14 @@ function buildView() {
 }
 
 function initializeComponents() {
-    const listView = new ListView('track-grid');
-    // .data([...app.databases.s1.trackMap.values()])
-    // .bindFunction((e, d) => {
-    //     e.querySelector('.code').textContent = d.code;
-    //     e.querySelector('.eng-name').textContent = d.engName;
-    // })
-    // .render();
+    const listView = new ListView('track-grid')
+        .data([...app.databases.s1.DAO.getRandomTracksKey(10)])
+        .bindFunction((e, d) => {
+            const track = app.databases.s1.DAO.getTrackByIdentify(d);
+            e.querySelector('.code').textContent = track.code;
+            e.querySelector('.eng-name').textContent = track.engName;
+        })
+        .render();
 }
 
 function initializeFeatures() {
